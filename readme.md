@@ -7,7 +7,7 @@ mkdir <yourfolder>
 cd <folder>
 git init
 git remoute add orign Repository
-git fetch >name>
+git fetch <name>
 git pull <name> master
 git clone Repository
 go to setup and install it
