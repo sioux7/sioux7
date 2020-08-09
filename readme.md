@@ -12,6 +12,7 @@ git pull <name> master
 git clone Repository
 go to setup and install it
 
-supportgit pull <name> master
+support. 
+git pull <name> master
 git pull <name> master
   Got it
