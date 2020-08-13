@@ -1,0 +1,249 @@
+#menuheader
+{
+	font-weight: bold;
+	color: #fff;
+	line-height: 40px;
+	height: 50px;
+	padding: 0 10px;
+}
+#menuheader img
+{
+	width:130px;
+}
+#menuheader a.lang
+{
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	top: 20px;
+	right: 70px;
+}
+#menuheader a.button
+{
+	display: block;
+	width: 45px;
+	height: 50px;
+}
+#menuheader .icon-bar {
+    background-color: #999;
+    border-radius: 1px;
+    display: block;
+    height: 3px;
+    width: 22px;
+    margin: 5px 0px;
+}
+.topswitch {
+    width:100%;
+}
+.navbar-toggle {
+    float: left;
+}
+.navbar-nav {
+    margin: 7.5px -9px;
+}
+.navbar-brand > img {
+   margin: -5px 0 0;
+   width: 120px;
+   transition: all 0.5s ease-in;
+	-moz-transition: all 0.5s ease-in;
+	-webkit-transition: all 0.5s ease-in;
+	-ms-transition: all 0.5s ease-in;
+}
+.navbar-selector {
+	position: absolute !important;
+	right: 0;
+	top: -38px;
+}
+.navbar-right .dropdown-menu {
+    right: auto;
+    left: auto;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #999;
+}
+.navbar-inverse .navbar-toggle {
+    border: none;
+}
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #fff !important;
+}
+.nav > li > a {
+    padding: 10px 15px 15px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in;
+	-moz-transition: all 0.2s ease-in;
+	-webkit-transition: all 0.2s ease-in;
+	-ms-transition: all 0.2s ease-in;
+}
+.nav > li > a  > .img0 {
+    width: 10px;
+}
+.navbar-selector > li > a {
+    padding: 35px 15px 0px;
+    color: #646464;
+    text-transform: uppercase;
+}
+.navbar-inverse {
+    background-color: #fff;
+    padding: 30px 0 0;
+}
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #ccc;
+}
+.navbar-inverse .navbar-nav > li > a {
+    cursor:pointer; 
+}
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #000;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #000;
+    background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #000;
+    background-color: #fff;
+}
+.navbar-brand {
+    padding: 0px;
+}
+/* Styles for dropdown navigation */
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+	display: block;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+	border-radius: 6px 0 6px 6px;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #23527c;
+    background: #ececec;
+}
+.dropdown-menu > li > a {
+	font: 300 16px/18px "museo-sans", sans-serif;
+    color:#646464;
+    padding: 3px 15px;
+    text-transform: uppercase;
+}
+.inner .button,.brand h4 {
+   cursor:pointer;
+}
+.inner .button:hover, .inner h4.selected, .inner .button.active,.brand h4.active {
+    background: transparent -moz-linear-gradient(center top , #DF0613, #B1050F) repeat scroll 0% 0%;
+}
+#termin-bar .fa-close {
+    position: absolute;
+    right: 30px;
+    top: 8px;
+	cursor: pointer;
+    color: #646464;
+    font-size: 25px;
+	text-align: center;
+    transition: all .3s;
+}
+.messeback{
+	position:relative;
+}
+.messetermin{
+	position:relative;
+	background:#fff;
+	border: 2px solid #999;
+	display:inline-block;
+}
+/* DIV */
+.terminform{
+	background:#999 !important;
+	color:#fff;
+	padding: 5px 10px 6px 9px;
+	margin:-5px 0 0;
+	font-weight: 500;
+	font-size:14px;
+}
+.fa.fa-angle-down{
+	font-size: 18px;
+}
+.smalllanguage{
+	text-transform: uppercase;
+	position:absolute;
+	top:-20px;
+	right:10px;
+}
+.smalllanguage li{
+	float:left;
+	list-style:none;
+}
+.smalllanguage li:after{
+	content: " | ";
+}
+.termin, .langmenu{
+	padding:35px 15px 0 !important;
+}
+@media (max-width:1380px){
+	.messetermin{
+		margin:10px 0 10px;
+		width:100%;
+	}
+}
+@media (max-width:991px){
+	.yamm .container {
+		width: 100%;
+	}
+	.navbar-inverse {
+	    padding: 30px 3px 0;
+	}
+	.nav > li > a {
+		padding: 10px;
+	}
+}
+@media (min-width:768px){
+	ul.nav li.dropdown:hover> ul.dropdown-menu{
+		display: block;
+		margin-top:0px
+	}
+}
+@media (max-width:767px){
+	.navbar-fixed-top {
+	    position: relative;
+	}
+	.navbar-inverse {
+		background-color: #fff;
+	    padding: 10px 0;
+	}
+	.padd-content {
+		margin-top: 90px;
+	}
+	.padd-menu {
+		margin-top: 30px;
+	}
+	.filter-topes{
+		display:none;
+	}	
+	.items img{
+		display:none;
+	}
+	.messetermin{
+		left:0;
+		width:100%;
+	}
+}
+
