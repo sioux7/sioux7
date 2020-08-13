@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /
+#RewriteCond %{HTTP_HOST} ^sioux7\.com$ [NC]
+#RewriteRule ^(.*)$ http://www.sioux7\.com/$1 [R=301,L]
+RewriteRule rss\.php$ rss.php
+RewriteRule (.*)\.html$ index.php?kategorie=$1  [QSA]
+
