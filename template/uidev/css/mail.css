@@ -1,0 +1,209 @@
+/* --------------------------------------
+mailform
+-----------------------------------------*/
+.dce-mail{
+	max-width:1430px;
+	margin:0 auto;
+}
+#tcal img{
+	max-width:7px;
+}
+.google{
+	position:relative;
+	margin:-70px 0 -40px;
+}
+div.slidein{
+	position:relative;
+	width:30px;
+	height:400px;
+	color:#e1246b;
+	border:1px solid #e1246b;
+	cursor:pointer;
+	background:#fff;
+	margin:25px 0 0;
+}
+div.mailmy{
+	position:absolute;
+	top:10px;
+	left:30%;
+}
+div.slidebutton{
+	position:absolute;
+	top:45%;
+	left:30%;
+}
+#themail{
+	position:absolute;
+	top:10px;
+	right:-76.2%;
+	width:80%;
+	font-size: 14px;
+	z-index:99;
+}
+div.mailcontent{
+	opacity:0;
+}
+div.mailform{
+	background:#fff;
+}
+div.mail {
+	width: 100%;
+	padding:0 10px;
+}
+div.mail .beratung{
+	font: 100 12px/12px "museo-sans", sans-serif;
+}
+div.mail div{
+	padding: 4px 0;
+}
+div.mail .mailcontent{
+	padding: 10px;
+	background:#fff;
+	border:2px solid #e1246b;
+}
+div.mail .termin{
+	padding: 0;
+}
+div.mail span {
+	display: block;
+}
+
+div.mail label {
+	width: 20%;
+	display: block;
+	float: left;
+	color:#999;
+}
+div.mail input {
+	border:none;
+	border-bottom: 1px solid #ccc;
+	color:#000;
+	padding-left:10px;
+	margin:10px 0;
+	width: 99%;
+}
+div.mail  input[type="radio"] {
+  display: none;
+}
+div.mail  input[type="radio"] + label {
+  color: #999;
+  font: 300 18px/20px 'Titillium Web', sans-serif;
+}
+div.mail input[type="radio"] + label span {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin: -5px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+div.mail  input[type="radio"] + label span {
+  background-color: #ccc;
+}
+div.mail  input[type="radio"]:checked + label span {
+  background-color: #999;
+}
+div.mail  input[type="radio"] + label span,
+div.mail  input[type="radio"]:checked + label span {
+  -webkit-transition: background-color 0.4s linear;
+  -o-transition: background-color 0.4s linear;
+  -moz-transition: background-color 0.4s linear;
+  transition: background-color 0.4s linear;
+}
+div.mail textarea {
+	border:none;
+	border: 1px solid #ccc;
+	padding-left:10px;
+	width: 99%;
+}
+div.mail textarea {
+	margin: 5px 0 0 0;
+}
+div.mail .contact_date{
+	width:80% !important;
+}
+div.sendmy{
+	position:relative;
+	float:right;
+	background: #999;
+	color: #fff;
+	cursor:pointer;
+	margin: 15px 0;
+}
+div.mail .sendmy:hover {
+	background: #000;
+}
+div.mail .sendmy .fa-envelope{
+	position:absolute;
+	right: 5px;
+	top: 7px;
+	font-size: 18px;
+}
+div.mail input.senden, div.mail input.kundensenden, div.mail input.messesenden {
+	border:0;
+	margin: 0;
+	background: transparent;
+	padding: 0 25px 0 10px;
+	color:#fff;
+	font-weight: 500;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.colmail{
+	float:left;
+	width:33%;
+}
+.colmail2{
+	float:left;
+	width:50%;
+}
+.colmail.full {
+    width: 100%;
+	padding-left: 7px;
+}
+.antispam {
+    display: none;
+}
+.input-group {
+    display: block;
+	width:80%;
+}
+.input-group-addon {
+    padding: 6px 2px;
+    font-size: 14px;
+    color: #555;
+    background-color: transparent;
+    border: none;
+}	
+@media only screen and (max-width:768px) {
+	div.slidein{
+		display:none !important;
+	}
+	#themail{
+		position:relative;
+		right:0 !important;
+		width:100%;
+	}
+	div.mailcontent{
+		opacity:1 !important;
+	}
+	.input-group, .colmail, .colmail2 {
+		width:95%;
+	}
+	div.mail .contact_date{
+		width:95% !important;
+	}
+	div.mail,.theadress,.colmail,.colmail2{
+		float:none;
+		width:95%;
+	}
+	div.mail input {
+		width: 95%;
+	}
+	.google{
+		position:relative;
+		margin:0;
+	}
+}
