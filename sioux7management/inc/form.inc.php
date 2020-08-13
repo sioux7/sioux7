@@ -51,7 +51,7 @@ if($_POST){
 	$tmpname = $_FILES['bild']['tmp_name'];
  	if($tmpname !=""){
 	   if (file_exists($tmpname) == 1) {
-	    $picture=$_SESSION['user_id']."_".$_FILES['bild']['name'];
+	    $picture=$_SESSION['user_id']."_".$_SESSION['DOM']."_".$_FILES['bild']['name'];
 	    $foto = "../upload/images/".$picture;
 	   $foto = "../upload/images/".$picture;
 		if(filesize($tmpname) > 500000000) {
@@ -66,7 +66,7 @@ if($_POST){
 	$tmpname = $_FILES['datei']['tmp_name'];
  	if($tmpname !=""){
 	   if (file_exists($tmpname) == 1) {
-	    $dname=$_FILES['datei']['name'];
+	    $dname=$_SESSION['user_id']."_".$_SESSION['DOM']."_".$_FILES['datei']['name'];
 	    $laden = "../upload/files/".$dname;
 	    if(filesize($tmpname) > 500000000) {
 			die('File to big.');
@@ -113,8 +113,8 @@ if($_POST){
 	}
 	$fields = substr($fields,1);
 	$values = substr($values,1);
-	//Fehler abfangen
-	$q = mysqli_query($GLOBALS['DB'],"SELECT * FROM ".$table." WHERE $id_name=".$id);
+	$fehler = "SELECT * FROM ".$table." WHERE $id_name=".$id;
+	$q = mysqli_query($GLOBALS['DB'],$fehler);
 	$fields_cnt = mysqli_num_fields($q);
 	for($j = 0; $j < $fields_cnt; $j++) {
 		$name = mysqli_field_name ($q,$j);
@@ -126,7 +126,6 @@ if($_POST){
 	if($error==false) {
 	$query = "INSERT INTO `".$_POST['table']."` ($fields) VALUES ($values)";
 	mysqli_query($GLOBALS['DB'],$query);
-	$_REQUEST['ID'] = mysqli_insert_id();
 	echo '<div class="box_erfolg">Daten wurden erfolgreich gespeichert!</div>';
 	$log=logThem($_REQUEST['ID'],$_POST['table'],$plugin,'ins');
 	exit();	
@@ -378,16 +377,15 @@ while($com=mysqli_fetch_array($comment)){
 							if($_REQUEST['ID'] !=0 && $enum[1]!="") {
 						 ?>
 							 <TD>
-								<img src="images/icon_add.gif" id="multi" title="neuer Datensatz">&nbsp;<img src="images/reload.png" id="reload" title="Reload Seite">
+								 <h3>Inhalt verwalten</h3>
+								<img src="images/icon_add.gif" id="multi" title="neuer Datensatz"> Neu&nbsp;<img src="images/reload.png" id="reload" title="Reload Seite"> Laden
 							 </TD>
 						 <?php
 							$_SESSION['iTab']=$enum[1];
 							$_SESSION['xID']=$enum[2];
 							$_SESSION['xname']=$_REQUEST['name'];
 							$_SESSION['levelID']=$_REQUEST['ID'];
-							echo "</tr><tr><td colspan=4><strong>".ucfirst($enum[1]).": </strong><div id='xinhalt'><table>";
-							//include "../libary/include/form_zusatz.inc.php";
-							echo "</table></div></td></tr><tr>";
+							echo "</tr><tr><td colspan=4><strong>".ucfirst($enum[1]).": </strong><hr><div id='xinhalt'></div></td></tr><tr>";
 							
 							}} else if(!strstr($name,'_nav')){
 						 ?>

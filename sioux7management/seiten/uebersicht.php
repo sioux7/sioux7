@@ -29,6 +29,16 @@ if ((int)$_GET['dupli']>0) {
 
 
 if($_SESSION['table'] == 'admin' && $_SESSION['right'] <= 770) {$sq=" WHERE admin_id=".$_SESSION['user_id'];} else if($_SESSION['table'] == 'photo' && $_SESSION['right'] <= 990) {$sq=" WHERE user_id=".$_SESSION['user_id'];} else if($_SESSION['table'] == 'profil') {$sq=" WHERE user_id=".$_SESSION['user_id'];} else {$sq=" Where 1=1";}
+$sql_fields .="SELECT * FROM ".$_SESSION['table'];
+$result = mysqli_query($GLOBALS['DB'],$sql_fields);
+$fields_cnt = mysqli_num_fields($result);
+for($j = 0; $j < $fields_cnt; $j++) {
+	$name = mysqli_field_name ($result,$j);
+	if($name == "dom_id") {$domain = " AND dom_id=".$_SESSION['DOM'];}
+	if($name == "lang") {$language = " AND lang='".$_SESSION['lang']."'";}
+}
+if($domain) { $sq .= $domain;}
+if($language) { $sq .= $language;}
 
 include "sitescroll.inc.php";
 
@@ -72,12 +82,23 @@ function askDelete(url){
 }
 // -->
 </script>
+<?php
+	if($_SESSION['table'] =='sioux7_konfiguration'){
+		if(!defined('TPL')) {echo '<div class="box_fehler">TPL (Templatename) fehlt</div>';}
+		if(!defined('DOM')) {echo '<div class="box_fehler">DOM (Domainname) fehlt</div>';}
+		if(!defined('BASE')) {echo '<div class="box_fehler">BASE (base_href) fehlt</div>';}
+		if(!defined('EMAIL')) {echo '<div class="box_fehler">EMAIL (email) fehlt</div>';}
+		if(!defined('MAILHOST')) {echo '<div class="box_fehler">MAILHOST (smtp) fehlt</div>';}
+		if(!defined('MAILPW')) {echo '<div class="box_fehler">MAILPW (smtp passwort) fehlt</div>';}
+		if(!defined('MAXSHOW')) {echo '<div class="box_fehler">MAXSHOW (max. Anzeige pro Seite) fehlt</div>';}
+	}
+?>
 <table>
 <tr>
 	<td colspan=5>
 		<b>Info:</b>
 		<?php
-		 echo $row_mod['info'];
+		 echo nl2br($row_mod['info']);
 		?>
 	</td>
 </tr>
@@ -108,8 +129,6 @@ if(!strstr($name,"_nav") && !strstr($name,"passwort") && !strstr($name,"gesperrt
 ?>
 	<td width="0%" align="center"><a href="start.php?seite=<?php echo $_GET['seite']; ?>&sortfield=<?php echo $name; ?>&sortmode=<?php if($_REQUEST['sortmode'] =="desc" && $_REQUEST['sortfield'] == $name) { echo "asc";} else {echo "desc";} ?>"><?php echo strtoupper($name); ?> <?php if($_REQUEST['sortmode'] =="desc" && $_REQUEST['sortfield'] == $name) { echo "&uarr;";} else {echo "&darr;";} ?></a></td>
 <?php }} 
-if($hasFields==1) { 
-	print '<td width="2%" align="right">ANZ</td>';}
 ?>
 	<td width="10%" align="right">&nbsp;</td>
 </tr>
@@ -134,10 +153,7 @@ do{
 	    ?>
 		<td style="max-width: 300px; overflow: hidden;"><?php echo $r[$j]; ?></td>
 	    <?php }} 
-	    if($hasFields==1) { 
-	    	$query="SELECT * FROM ".$enum[1]. " WHERE level=".$r[0];
-			$num_q=mysqli_num_rows($query);
-	    	print '<td>'.$num_q.'</td>';}
+	    
 	    if($row_mod['mode'] == 1) {
 		    $_SESSION ['mode'] = 1;
 		?>

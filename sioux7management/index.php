@@ -1,7 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['DOM'])) { $_SESSION['DOM'] = "2";}
 setcookie("cookie[sioux]", "TMsioux7-6720", time()+3600);
-include "inc/globals.inc.php";
+include "../sioux7conf/globals.inc.php";
 include "inc/functions.inc.php";
 connect2db();
 if($_REQUEST['passwortvergessen']) { sendPasswordEmail($_REQUEST['email']); }
@@ -27,7 +28,7 @@ if($_REQUEST['passwortvergessen']) { sendPasswordEmail($_REQUEST['email']); }
     <div style="display:none; width: 500px;">
     <div id="passwortanfordern">
         	<h1>Passwort vergessen?</h1>
-            Um ein neues Passwort anzufordern, geben Sie bitte Ihre Email-Adress ein.
+            Um ein neues Passwort anzufordern, geben Sie bitte Ihre Email-Adresse ein.
                         
         	<form action="" method="POST" name="passwort">
             <input type="hidden" name="passwortvergessen" value="sendme" />
@@ -98,7 +99,7 @@ function sendPasswordEmail($strMail) {
 		if(!$mail->Send()) die('could not sed') ;
 		$mail->ClearAddresses();
 		$query = "UPDATE admin SET passwort='".md5($strCode)."' WHERE admin_id=".$arrBenutzer['admin_id'];
-		mysqli_query($GLOBALS['DB'],$query);
+		mysqli_query($GLOBALS['DB'],$query);		
 		}
 }
 

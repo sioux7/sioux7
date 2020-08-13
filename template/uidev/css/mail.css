@@ -48,7 +48,6 @@ div.mailform{
 }
 div.mail {
 	width: 100%;
-	padding:0 10px;
 }
 div.mail .beratung{
 	font: 100 12px/12px "museo-sans", sans-serif;
@@ -82,6 +81,9 @@ div.mail input {
 	margin:10px 0;
 	width: 99%;
 }
+div.mail  input[type="checkbox"] {
+  width: 10px;
+}
 div.mail  input[type="radio"] {
   display: none;
 }
@@ -103,7 +105,7 @@ div.mail  input[type="radio"] + label span {
   background-color: #ccc;
 }
 div.mail  input[type="radio"]:checked + label span {
-  background-color: #999;
+  background-color: #000;
 }
 div.mail  input[type="radio"] + label span,
 div.mail  input[type="radio"]:checked + label span {

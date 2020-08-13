@@ -42,7 +42,7 @@ if($_SESSION['right'] == '999') {
 	echo "<a href='start.php?seite=grundxml'>Sitemap XML</a>";
 	echo "<a href='start.php?seite=grundupdate'>Update</a>";
 	echo "<a href='start.php?seite=grundstat'>Statistik</a>";
-	//echo "<a href='editor/editor.php' target='fenster' onClick=\"popup('','fenster',750,750)\">Newsletter bearbeiten</a>";	
+	echo "<a href='editor/editor.php' target='fenster' onClick=\"popup('','fenster',750,750)\">Newsletter bearbeiten</a>";	
 	//echo "<a href='start.php?seite=grundsendnow'>Newsletter senden</a>";
 	echo "<a href='start.php?seite=grundlog'>LOG</a>";
 	echo "</div>";
@@ -65,9 +65,9 @@ for($tmp=0; $tmp<sizeof($tables); $tmp++)
 	//$ID = mysqli_field_name ($result,0);
 	if($tables[$tmp] != "sioux7_admin" || $_SESSION['right'] > 770 ) {
 	if($tables[$tmp] == "sioux7_kategorie" || $mode[$tmp] == 1 ) {
-		echo "<a href='start.php?seite=bearbeiten&table=".$tables[$tmp]."&name=".$ID."&what=html'>".ucfirst(urlencode($ab))."Kategorie anlegen</a>";
+		echo "<a href='start.php?seite=bearbeiten&table=".$tables[$tmp]."&name=".$ID."&what=html'>".ucfirst(urlencode($ab))." Kategorien anlegen</a>";
 	} else {
-		echo "<a href='start.php?seite=bearbeiten&table=".$tables[$tmp]."&name=".$ID."'>".ucfirst(urlencode($tab))."kategorie anlegen</a>";
+		echo "<a href='start.php?seite=bearbeiten&table=".$tables[$tmp]."&name=".$ID."'>".ucfirst(urlencode($tab))." anlegen</a>";
 	}}
 	echo "</div>";
 }

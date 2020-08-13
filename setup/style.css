@@ -1,0 +1,22 @@
+body {
+ background-color: #e7e7e7;
+ color: #000;
+ padding: 0; 
+ margin: 0; 
+ font: Arial, sans-serif; 
+ font-size: 12px;
+ line-height: 1.5em;
+}
+input, select, textarea { border: 1px solid #000; margin: 2px 0 2px 0;}
+a { color: #46574D; background: inherit; text-decoration: none;}
+a:hover { color: #647B6D; background: inherit;}
+img {border: 0; float: left; margin-right: 10px;}
+TABLE{
+border: 1px solid #000;
+background: #FFF;
+width:650px;
+}
+h3{color:red;}
+
+
+

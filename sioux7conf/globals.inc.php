@@ -1,6 +1,10 @@
 <?php
-$server="mysql5.uidev.de";
-$user="db312122_2";
-$passwort="qru5r+sY%pnZ";
-$datenbank="db312122_2";
+$server="localhost";
+$user="root";
+$passwort="";
+$datenbank="projekt_sioux7";
+define('INC', 'libary/include/');
+define('IMG', 'media/images/');
+define('SCLASS', 'libary/class/');
+define('WG', 'libary/widgets/');
 ?>

@@ -4,21 +4,21 @@ if(isset($_REQUEST['del'])){
 	$result = mysqli_query($GLOBALS['DB'],$sql_del);
 }
 if(isset($_REQUEST['res'])){
-	$sql_query = "UPDATE sioux7_statistik SET counter=1";
+	$sql_query = "UPDATE sioux7_statistik SET counter=1 WHERE dom_id=".$_SESSION['DOM'];
 	$result = mysqli_query($GLOBALS['DB'],$sql_query);
 }
 if(isset($_REQUEST['delall'])){
-	$sql_del = "DELETE FROM sioux7_statistik";
+	$sql_del = "DELETE FROM sioux7_statistik WHERE dom_id=".$_SESSION['DOM'];
 	$result = mysqli_query($GLOBALS['DB'],$sql_del);
 }
 	
-$sql_query = "SELECT * FROM sioux7_statistik ORDER BY counter DESC";
+$sql_query = "SELECT * FROM sioux7_statistik WHERE dom_id=".$_SESSION['DOM']." ORDER BY counter DESC";
 $result = mysqli_query($GLOBALS['DB'],$sql_query);
 $num = mysqli_num_rows($result);
 
 if ($num == 0) echo "Die Datenbank enth&auml;lt keine Daten!";
 else {
-	$sql_query2 = "SELECT SUM(counter) as summe FROM sioux7_statistik WHERE seite <> 'home'";
+	$sql_query2 = "SELECT SUM(counter) as summe FROM sioux7_statistik WHERE dom_id=".$_SESSION['DOM']." AND seite <> ''";
 	$result2 = mysqli_query($GLOBALS['DB'],$sql_query2);
 	$row2 = mysqli_fetch_array($result2);
 	$pixelmax=300;
@@ -36,7 +36,7 @@ else {
 		  </tr>";		   
 		
 	while ($row = mysqli_fetch_array($result)) {
-	if($row['seite'] !='home'){	
+	if($row['seite'] !=''){	
 	$pixel=round($row['counter']/$row2['summe']*$pixelmax);
 	$anteil=number_format($row['counter']/$row2['summe']*100,2);
 	print "<tr>

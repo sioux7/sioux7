@@ -1,14 +1,22 @@
 <?php
-if($_SESSION['user_id'] != "") {
+if($_SESSION['member_id'] != "") {
 	echo 'Eingeloggt als <b> '.$_SESSION['username'].' </b><br>';
-	echo'<a href="http://dev.sioux7.com/" target="_NEW">&raquo; Zur DevZone</a><br>';
-	echo'<a href="sioux7management/home.php" target="_NEW">&raquo; Zur Verwaltung</a><br>';
-	echo'<a href="home.html?set=logout"> &raquo; Logout</a>';
+	$menu=MyDbObject::kat("sioux7_kategorie", 0,'user');
+	echo '<div class="membermenu">'.$menu.'</div>';
+	echo'<div><a href="/?set=logout"> &raquo; Logout</a></div>';
 } else {
-	echo ' <form method="POST" action="home.html">
-		   Login: <input type="text" name="benutzer" value="" size=15><br>
-		   Passwort: <input type="password" name="pw" value="" size=15><br>
-		   <input class="button" type="submit" alt="login" value="login" name="login">
+	echo ' <form method="POST" action="/">
+		   <table>
+		   <tr>
+		   <td>Login:</td><td><input type="text" name="benutzer" value="" size=10></td>
+		   </tr>
+		   <tr>
+		   <td>Passwort:</td><td><input type="password" name="pw" value="" size=10></td>
+		   </tr>
+		   <tr>
+		   <td colspan=2><input class="button" type="submit" alt="login" value="login" name="login"></td>
+		   </tr>
+		   </table>
 		   </form>';
 }
 ?>

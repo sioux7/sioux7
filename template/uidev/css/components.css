@@ -1,0 +1,14 @@
+/* Press */
+.press ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.press ul li{
+	margin:10px 0;
+}
+/* Members */
+.membermenu{
+	float: left;
+	width: 100%;
+}

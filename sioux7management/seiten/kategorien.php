@@ -31,7 +31,7 @@ echo "Memberbereich: <ul style='list-style: none;'>".mykat($table,0)."</ul>";
 
 function mykat($table, $intStart, $pos=0, $strEinrueckung="&nbsp;"){
 	global $wert, $feld, $menu;
-	$strSQL = "SELECT * FROM ".$table." WHERE kategorie_id <> 0 AND parent=".$intStart." AND menu='".$menu."' ORDER BY rang";
+	$strSQL = "SELECT * FROM ".$table." WHERE kategorie_id <> 0 AND parent=".$intStart." AND menu='".$menu."' and lang ='".$_SESSION['lang']."' and dom_id =".$_SESSION['DOM']." ORDER BY rang";
 	$dbQuery = mysqli_query($GLOBALS['DB'],$strSQL) or die(mysql_error());
 	$i=0;
 	while($arrKat = mysqli_fetch_assoc($dbQuery)){
@@ -50,6 +50,9 @@ function mykat($table, $intStart, $pos=0, $strEinrueckung="&nbsp;"){
 		$strReturn.="<img src='images/icon_fehler.gif' title='passiv'/>";
 		 }
 		$strReturn.="</a>";
+		if($arrKat['property'] && $arrKat['property'] != 'normal') { 
+			 $strReturn.= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$arrKat['property'];
+		 }
 		$strReturn .="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' onclick=\"askDelete('start.php?seite=kategorien&table=sioux7_kategorie&delete=".$arrKat[$feld]."')\"><img src='images/icon_loeschen2.gif' title='Seite loeschen' style='float:right;'></a>";
 		$strReturn .="</li>\n";
 		$strSQL2 = "SELECT * FROM ".$table." WHERE parent=".$arrKat[$feld]." AND menu='".$menu."'";

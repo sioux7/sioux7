@@ -1,5 +1,5 @@
 <?php
-$query1="SELECT * FROM sioux7_developing WHERE dev_id <> 0 ORDER BY isFertig";
+$query1="SELECT * FROM sioux7_developing WHERE dev_id <> 0 ORDER BY isFertig DESC";
 $res1=mysqli_query($GLOBALS['DB'],$query1);
 echo '<table><tbody>';
 echo '<tr bgcolor="lightgrey"><td>Entwicklung</td><td>Beschreibung</td><td>fertig</td></tr>';

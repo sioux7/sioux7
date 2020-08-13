@@ -1,5 +1,4 @@
 <?php
-define('MAXSHOW',5);
 class MyDbObject {
 	var $_table_name;
 	var $_id_name;
@@ -14,7 +13,11 @@ class MyDbObject {
 		} else {
 			$GLOBALS['DB'] = $db_verbindung;
 			mysqli_set_charset($db_verbindung, "utf8");
-			$dbQuery=mysqli_query($db_verbindung,"SELECT * FROM sioux7_konfiguration");
+			$sql_DOM="SELECT domain_id FROM sioux7_domain WHERE domainname='".$_SERVER['HTTP_HOST']."'";
+			$res=mysqli_query($GLOBALS['DB'],$sql_DOM);
+			$arrDOM=mysqli_fetch_array($res);
+			$_SESSION['DOM'] = $arrDOM['domain_id'];
+			$dbQuery=mysqli_query($db_verbindung,"SELECT * FROM sioux7_konfiguration WHERE dom_id=".$_SESSION['DOM']);
 			while($arrKonf = mysqli_fetch_assoc($dbQuery)){
 				define(strtoupper($arrKonf['schluessel']), $arrKonf['wert']);
 			}
@@ -192,8 +195,9 @@ class MyDbObject {
 	
 				$strReturn.="<li ";
 				if($intStart==0) {$strReturn .="class='dropdown'";} else {$strReturn .="class='dropdown-submenu'";}
-				$strReturn.="><a href='".getLink($arrKat['kategorie_id'])."' title='".strip_tags($arrKat['beschreibung'])."'";
-				$strReturn.=">".$arrKat['titel']."</a>";
+				$strReturn.="><a href='".getLink($arrKat['kategorie_id'])."' title='".$arrKat['beschreibung']."'";
+				if($arrKat['icon']) {$icon = '<i class="fa '.strtolower($arrKat['icon']).'" aria-hidden="true"></i>';} else {$icon = '';}
+				$strReturn.=">".$icon." ".$arrKat['titel']."</a>";
 	
 				$strSQL2 = "SELECT * FROM ".$table." WHERE parent=".$arrKat['kategorie_id']." AND aktiv=1";
 				$unter=mysqli_query($GLOBALS['DB'],$strSQL2);
@@ -208,14 +212,14 @@ class MyDbObject {
 	function login($pw,$user,$set = NULL){
 		if(!$set) {
 			$password = md5($pw);
-			$check = "SELECT * FROM `sioux7_admin` WHERE `email` = '".$user."' AND passwort='".$password."'";
+			$check = "SELECT * FROM `sioux7_members` WHERE `email` = '".$user."' AND passwort='".$password."' AND dom_id=".$_SESSION['DOM'];
 			$getUserValuesQuery = @mysqli_query($GLOBALS['DB'],$check);
 			$getUserValuesFetch = @mysqli_fetch_array($getUserValuesQuery);
-			$_SESSION['user_id'] = $getUserValuesFetch['admin_id'];
+			$_SESSION['member_id'] = $getUserValuesFetch['member_id'];
 			$_SESSION['username'] = $getUserValuesFetch['login'];
 			$_SESSION['right'] = $getUserValuesFetch['rights'];
 		} else {
-			unset($_SESSION['user_id']);
+			unset($_SESSION['member_id']);
 			unset($_SESSION['username']);
 			unset($_SESSION['right']);
 		}

@@ -7,6 +7,7 @@ body {		background: url(../../img/bg.jpg) repeat-x #E6EFFF; padding: 0px; margin
 div {		font-family: "Trebuchet MS", Arial, Verdana; font-size: 13px; color: #333333; font-weight: normal; text-decoration: none; }
 
 table{ width:95%;}
+.domainselect {float:left;margin-right:10px;}
 
 /* ============================================ */
 

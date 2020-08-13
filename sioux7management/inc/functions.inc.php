@@ -12,7 +12,7 @@ function connect2db(){
 	}
 	$GLOBALS['DB'] = $db_verbindung;
 	mysqli_set_charset($db_verbindung, "utf8");
-	$dbQuery=mysqli_query($db_verbindung,"SELECT * FROM sioux7_konfiguration");
+	$dbQuery=mysqli_query($db_verbindung,"SELECT * FROM sioux7_konfiguration WHERE dom_id=".$_SESSION['DOM']);
 	while($arrKonf = mysqli_fetch_assoc($dbQuery)){
 		define(strtoupper($arrKonf['schluessel']), $arrKonf['wert']);
 	}

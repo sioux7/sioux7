@@ -87,11 +87,11 @@ function datum($dat){
 
 function type($what) {
 	switch ($what) {
-	case "pdf": $type = "pdf.jpg"; break;
-	case "zip": $type = "zip.jpg"; break;
+	case "pdf": $type = "pdf.jpg";$tname ="PDF"; break;
+	case "zip": $type = "zip.jpg";$tname ="ZIP"; break;
 	default: $type=""; break;
 	}
-	return $type;
+	return array($type,$tname);
 }
 
 function xeregi($need,$search) {
@@ -137,8 +137,8 @@ function sitescroll($table,$field,$bereich){
 		}
 		$where.= " ) ";
 	}
-	$sql_query1 = "SELECT * FROM ".$table." WHERE ".$field." <> 0".$where;
-	$erg = mysqli_query($GLOBALS['DB'],$sql_query1) or die (mysql_error());
+	$sql_query1 = "SELECT * FROM ".$table." WHERE dom_id=".$_SESSION['DOM']." AND lang='".$_SESSION['LANG']."' AND ".$field." <> 0".$where;
+	$erg = mysqli_query($GLOBALS['DB'],$sql_query1);
 	$num_entries = mysqli_num_rows($erg);
 	$all_pages = $num_entries / MAXSHOW;
 	$num_pages = intval($all_pages);
@@ -212,13 +212,5 @@ function getTheLink($id_name,$id,$plugin=NULL){
 	$katBez=make2url($arrBezeichnung['ktitel']);
 	$link = $strReturn.$katBez.'?'.$id_name.'='.$id;
 	return $link;
-}
-function getDOM(){
-	$DOM = mysqli_fetch_assoc(mysql_query("SELECT dom_id FROM sioux7_domain WHERE Domainname='".$_SERVER['HTTP_HOST']."'"));
-	$dbQuery=mysqli_query($GLOBALS['DB'],"SELECT * FROM sioux7_konfiguration WHERE dom_id=2") or die(mysql_error().$_SERVER['HTTP_HOST']);
-	while($arrKonf = mysql_fetch_assoc($dbQuery)){
-		define(strtoupper($arrKonf['schluessel']), $arrKonf['wert']);
-	}
-	return 2;
 }
 ?>

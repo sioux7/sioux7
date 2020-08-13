@@ -1,20 +1,35 @@
 <?php
 session_start();
+if(!isset($_SESSION['DOM'])) { $_SESSION['DOM'] = "2";}
+if(isset($_REQUEST['DOM'])) {
+	$_SESSION['DOM'] = $_REQUEST['DOM'];}
 if(!isset($_SESSION['reiter'])) { $_SESSION['reiter'] = "verwaltung";}
 if(isset($_REQUEST['reiter']) and $_REQUEST['reiter'] !="") {
 	$_SESSION['reiter'] = $_REQUEST['reiter'];}
 if($_SESSION['user_id'] =="") {header("location: index.php");}
 if(!isset($_SESSION['lang'])) { $_SESSION['lang'] = "de";}
 if(isset($_REQUEST['lang']) and $_REQUEST['lang'] !="") {
-	$_SESSION['lang'] = $_REQUEST['lang'];}
-	
+	$_SESSION['lang'] = $_REQUEST['lang'];}	
 if(!isset($_SESSION['table'])) { $_SESSION['table'] = "tables";}
 if(isset($_REQUEST['table']) and $_REQUEST['table'] !="") {
 	$_SESSION['table'] = $_REQUEST['table'];}
 
-include "inc/globals.inc.php";
+include "../sioux7conf/globals.inc.php";
 include "inc/functions.inc.php";
 connect2db();
+$msg = '';
+$sql_domaincheck = "SELECT * FROM sioux7_konfiguration WHERE dom_id=".$_SESSION['DOM'];
+$resultdom = mysqli_query($GLOBALS['DB'],$sql_domaincheck);
+if(!mysqli_num_rows($resultdom)) {
+	$terror = TRUE;
+	$msg .= '<div class="box_fehler">Bitte Einstellungen prüfen<span style="float:right"><a href="start.php?seite=uebersicht&table=sioux7_konfiguration&sortfield=cof_id&sortmode=">prüfen</a></span></div>';
+}
+$sql_langcheck = "SELECT * FROM sioux7_language WHERE dom_id=".$_SESSION['DOM'];
+$resultlang = mysqli_query($GLOBALS['DB'],$sql_langcheck);
+if(!mysqli_num_rows($resultlang)) {
+	$terror = TRUE;
+	$msg .= '<div class="box_fehler">Bitte Sprache prüfen<span style="float:right"><a href="start.php?seite=uebersicht&table=sioux7_language&sortfield=lang_id&sortmode=">prüfen</a></span></div>';
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
@@ -40,23 +55,40 @@ function popup(datei,name,b,h,scroll){
 	neuesfenster.focus(); }
 </script>
 </head>
-<body><div id="box_main">
-
+<body>
+<div id="box_main">
+<?php
+	if($terror){
+		echo $msg;
+	}
+?>
 <div id="box_head" class="standardbox">
 <span class="rechts">
 	<b>Eingeloggt als:</b> <?php echo ucfirst($_SESSION['username'])." (".recht($_SESSION['right']).")"; ?>
 	&nbsp;-&nbsp; 
-	<a href="start.php">Startseite <img src="images/icon_kl_home.gif" alt="Start" style="margin: 0pt 0pt 3px 4px;" border="0"></a> 
-	&nbsp;&nbsp; 
+	
 	<a href="inc/login.php?action=logout" target="_top">Logout <img src="images/icon_loeschen2.gif" alt="Logout" style="margin: 0pt 0pt 3px 4px;"  border="0"></a>
 </span>
-<a href="start.php"><?php echo DOM; ?> - Verwaltung</a>
+<form method="POST" action="start.php" class="domainselect">
+	<select name="DOM" onchange="submit();">
+	<?php
+	$sql_domain = "SELECT * FROM sioux7_domain WHERE domain_id <> 0";
+	$resultdom = mysqli_query($GLOBALS['DB'],$sql_domain);
+	while ($rowdom = mysqli_fetch_array($resultdom)) {?>
+		<option value="<?php echo $rowdom['domain_id']; ?>" <?php if($rowdom['domain_id'] == $_SESSION['DOM']) { echo "selected"; } ?>><?php echo $rowdom['domainname']; ?></option>
+	<?php } ?>
+	</select>
+</form>
+<form method="POST" action="start.php" class="langselect">
+	<select name="lang" onchange="submit();">
  <?php
-$sql_querylang = "SELECT * FROM sioux7_language WHERE lang_id <> 0 AND activ='activ'";
+$sql_querylang = "SELECT * FROM sioux7_language WHERE lang_id <> 0 AND dom_id=".$_SESSION['DOM'];
 $resultlang = mysqli_query($GLOBALS['DB'],$sql_querylang);
 while ($rowlang = mysqli_fetch_array($resultlang)) {?>
-<a href='start.php?lang=<?php echo $rowlang['vat']; ?>'><img src="../<?php echo IMG."flaggen/".$rowlang['bild'];?>" alt="<?php echo $rowlang['titel'] ?>" height="10"></a>&nbsp;
-<?php } ?>	
+<option value="<?php echo $rowlang['vat']; ?>" <?php if($rowlang['vat'] == $_SESSION['lang']) { echo "selected"; } ?>><?php echo $rowlang['vat']; ?></option>
+		<?php } ?>
+	</select>
+</form>
 </div>
 <div id="box_head" class="standardbox">
 <?php

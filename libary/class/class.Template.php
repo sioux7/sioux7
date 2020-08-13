@@ -41,7 +41,7 @@ class Template {
    					"amazon"=>WG."amazon.inc.php",
    					"firma"=>WG."firma.inc.php",
    					"sozial"=>WG."sozial.inc.php",
-   					"login"=>WG."login.inc.php");
+   					"member"=>WG."login.inc.php");
    	foreach($vars AS $key=>$val){
    		$this->widget = file_get_contents($val);
    		if(strstr($this->template,"#".$key."#")){
@@ -106,9 +106,8 @@ class Template {
 		echo "<!-- \n This website is powered by SIOUX7 \n SIOUX7 is a free open source Content Management Framework created by O. Urban and licensed under GNU/GPL.\n Information and contribution at http://sioux7.uidev.de/ \n -->\n";
 		// include INC.'gzip_header.inc.php'; => this will only go if gzip is enabled on server!
 		echo "<meta charset=\"utf-8\">".chr(10);
-		echo "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">".chr(10);
-        echo "<meta name=\"author\" content=\"UIDEV\" />".chr(10); 
-    	echo "<meta name=\"language\" content=\"deutsch, de\" />".chr(10); 
+		echo "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">".chr(10); 
+    	echo "<meta name=\"language\" content=\"".$_SESSION['LANG']."\"/>".chr(10); 
     	echo "<meta name=\"robots\" content=\"index,follow,archive\"/>".chr(10); 
     	echo "<meta name=\"revisit-after\" content=\"14 days\" />".chr(10);
 		
@@ -118,7 +117,6 @@ class Template {
 		echo '<base href="'.BASE.'/" />'.chr(10);
 		include INC.'meta.inc.php';
 		echo '<link rel="shortcut icon" href="template/'.TPL.'/favicon.ico" type="image/x-icon" />'.chr(10);
-		echo '<link rel="apple-touch-icon-precomposed" sizes="57x57" href="template/'.TPL.'/apple-favicon.png" type="image/x-icon" />'.chr(10);
 		echo '<script type="text/javascript">if (top != self) { alert("This site is framed!") }</script>'.chr(10);
 		echo '<script type="text/javascript" src="media/video/js/flowplayer-3.2.4.min.js"></script>'.chr(10);
 		for ($i = 0; $i < count($this->stylesheets); $i++) {
@@ -164,6 +162,10 @@ class Template {
 	function emit_tfooter() {	
 		for ($i = 0; $i < count($this->scripts_ftype); $i++) {
 			echo "<script type=\"text/javascript\" src=\"".$this->scripts_fcontent[$i]."\"></script>\n";
+		}
+		// User defined head
+		if(file_exists("template/".TPL."/inc/footer.inc.php")){
+			echo file_get_contents("template/".TPL."/inc/footer.inc.php");
 		} 
 		echo "\n</body>\n</html>";
    }

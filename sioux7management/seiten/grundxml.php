@@ -1,7 +1,7 @@
 <?php    
  function create_xml()
  { 
- 	 $sql_query1= "SELECT kategorie_id,titel FROM sioux7_kategorie WHERE aktiv='1'";
+ 	 $sql_query1= "SELECT kategorie_id,titel FROM sioux7_kategorie WHERE dom_id=".$_SESSION['DOM']." AND lang='".$_SESSION['lang']."' AND aktiv='1'";
 	 $result1 = mysqli_query($GLOBALS['DB'],$sql_query1);
 	 while ($row = mysqli_fetch_array($result1)) {
  	 $file_modified_time = date('Y-m-d');
@@ -60,7 +60,7 @@
  $txt.= $xml_basepath."\n";
  $txt.= $xml_list."\n";
  $txt.= $xml_footer."\n";
- 	$fp = fopen ('../sitemap.xml', 'w' );
+ 	$fp = fopen ('../sitemap_'.$_SESSION['DOM'].'_'.$_SESSION['lang'].'.xml', 'w' );
   	flock($fp,2);
 	fwrite($fp,$txt);
 	flock($fp,3);

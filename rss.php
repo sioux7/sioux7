@@ -3,22 +3,23 @@ include "sioux7conf/globals.inc.php";
 Header('Content-Type: application/xml');
 echo '<?xml version="1.0" encoding="UTF-8" ?>' . "\n";
 echo '<?xml-stylesheet href="http://www.w3.org/2000/08/w3c-synd/style.css" type="text/css"?>' . "\n";
+$connection = mysqli_connect($server, $user, $passwort, $datenbank);
+$sql_dom = mysqli_query($connection,"SELECT * FROM sioux7_domain WHERE domain_id=".$_GET['dom']);
+$row_dom = mysqli_fetch_array($sql_dom);
 ?>
 <rss version="2.0">
 <channel>
-<title>RSS SIOUX7</title>
-<link><?php echo $domain_title; ?></link>
-<description><?php echo replace($domain_descr); ?></description>
+<title>RSS <?php echo $row_dom['domainname']; ?></title>
+<link><?php echo $row_dom['domainname']; ?></link>
+<description><?php echo $row_dom['domdescr']; ?></description>
 <webMaster>O. Urban</webMaster>
 <language>deutsch</language>
 <image>
-  <url><?php echo 'media/logo/ioux_klein.png';?></url>
+  <url><?php echo 'media/logo/uid.png';?></url>
 </image>
 <docs>http://blogs.law.harvard.edu/tech/rss</docs>
 <?php
-$connection = mysqli_connect($server, $user, $passwort, $datenbank) or die('Couldn\'t make connection.');
-
-$sql_result = mysqli_query($connection,"SELECT * FROM sioux7_presse WHERE p_id <> 0 ORDER BY p_id DESC LIMIT 0,10");
+$sql_result = mysqli_query($connection,"SELECT * FROM sioux7_presse WHERE p_id <> 0 AND dom_id=".$_GET['dom']." AND lang='de' ORDER BY p_id DESC LIMIT 0,10");
 
 // Format results by row
 while ($row = mysqli_fetch_array($sql_result)) {

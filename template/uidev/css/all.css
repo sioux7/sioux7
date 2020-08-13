@@ -1,8 +1,11 @@
 @charset "UTF-8";
 /* first: import font! */
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(nav.css);
 @import url(mail.css);
+@import url(components.css);
+@import url(highlight.css);
 body {
 	background: #ececec url(../images/layout/background.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -19,6 +22,10 @@ body {
 }
 * {
 	max-height: 10000px;
+}
+h1, h2, h3 {
+    margin-top:0;
+    font-size: 25px;
 }
 a {
 	color: #777;
@@ -95,6 +102,26 @@ dd {
 	padding:5px;
 	text-indent:-9999px;
 }
+.code {
+	background: #ccc;
+	padding: 10px;
+	margin:10px;
+}
+/* Modal */
+.modal-content {
+	padding: 15px !important;
+}
+/* Slider */
+.carousel-control, .carousel-indicators {
+	display: none;
+}
+.carousel-inner .item {
+   left: 0 !important;
+   -webkit-transition: opacity .4s;
+   -moz-transition: opacity .4s; 
+   -o-transition: opacity .4s; 
+   transition: opacity .4s; 
+}
 /* MAIN */
 #wrapper{
 	overflow:hidden;
@@ -103,7 +130,6 @@ dd {
 }
 #header{
 	background:#fff;
-	max-width:1023px;
 	margin:0px auto;
 	overflow:hidden; 
 	-webkit-box-shadow: 10px 1px 5px 0px rgba(0,0,0,0.75);
@@ -117,7 +143,7 @@ dd {
 	background:url(../images/logo/logo.png) no-repeat left bottom;
 	background-size: 60%;
 	width:20%;
-	height:110px;
+	height:40px;
 	text-indent:-9999px;
 	overflow:hidden;
 	float:left;
@@ -130,22 +156,36 @@ dd {
 	float:right;
 	padding-top:10px;
 }
+.topnav li {
+	list-style:none;
+	float:left; 
+}
 .topnav a{
 	padding: 0 5px;
 }
 .lang{
+	position::relative;
 	float:right;
-	padding-top:6px;
+	padding-top:4px;
+	margin-right: 10px;
 }
 .lang ul{
 	padding:0;
 }
 .lang li{
+	float:left;
 	list-style:none;
 	padding:0 2px;
 }
+.lang form {
+	width:30px;
+}
+.lang input {
+	width:30px;
+	border:0;
+	cursor:pointer;
+}
 #main{
-	max-width:1023px;
 	margin:0 auto;
 	background:#fff;
 	-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -173,6 +213,9 @@ dd {
 }
 #breadcrumb{
 	margin-left: 20px;
+}
+#banner{
+	margin-bottom:10px;
 }
 .contact{
 	background:#000614;
@@ -253,7 +296,6 @@ dd {
 /* Footer */
 #footer{
 	margin:15px auto;
-	max-width:1024px;
 	background:#fff;
 	overflow:hidden;
 	padding:11px 61px 11px 11px;
@@ -288,9 +330,17 @@ dd {
 	padding:0 9px;
 	position:relative;
 }
+#footer .footernav a{
+	padding: 30px;
+}
 #footer ul li:first-child:before{display:none;}
 #footer ul li:first-child{padding-left:0;}
 
+@media (min-width: 1200px) {
+	.container {
+		width:1200px;
+	}
+}
 @media (max-width: 1070px) {
 	#wrapper{
 		padding:0 20px 20px;
@@ -311,6 +361,9 @@ dd {
 	#wrapper{
 		padding:0 10px 20px;
 	}
+	img{
+		float:none!important;
+	}
 	.opener{
 		display:block;
 		font-weight:700;
@@ -322,7 +375,7 @@ dd {
 		-moz-transform: scale(0.8);
 		-webkit-transform: scale(0.8);
 		transform: scale(0.8);
-		height:65px;
+		height:25px;
 		width:120px;
 	}
 	.gallery .slide .text{
@@ -347,7 +400,7 @@ dd {
 		padding:17px 11px 20px !important;
 	}
 	.twocolumns{margin:0;}
-	.ticker {
+	.ticker, .topnav, .footernav {
 		display:none !important;
 	}
 	#footer{
@@ -363,6 +416,11 @@ dd {
 		float:none;
 	}
 	#footer p{text-align:center;}
+}
+@media (max-width: 400px){
+	.carousel-caption{
+		bottom: -8px;
+	}
 }
 @media print {
 	header:before {

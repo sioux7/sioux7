@@ -1,17 +1,17 @@
-	<div id="container">
+	<div class="container">
 		<header id="header">
+			#slider#
 			<strong class="logo">
 				<a href="/">UIDEV</a>
 			</strong>
 			<div class="ticker">
 			#ticker#
 			</div>
+
 			<div class="lang">
 			#language#
-			</div>
-			<div class="topnav">
-			#topnav#
-			</div>
+			</div>			
+			#topnav#			
 		</header>
 		<div id="main">
 			<div class="menu">
@@ -29,9 +29,9 @@
 				</article>
 				<article class="column col1">
 					<div class="box">
-					#presse#
-					</div>
-					
+					#member#
+					</div>						
+					#presse#					
 					<div class="box contact">
 					#firma#
 					</div>						
@@ -50,7 +50,7 @@
 				</ul>
 			</div>
 			<div class="copyright">
-				<p>&copy; 2017 UIDEV</p>
+				<p>&copy; 2020 UIDEV</p>
 			</div>
 		</footer>
 	</div>

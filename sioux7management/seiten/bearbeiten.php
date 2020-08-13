@@ -1,5 +1,4 @@
 <?php
-
 $table=$_SESSION['table'];
 $hiddenFields=array('parent' => 0,'dom_id' => $_SESSION['DOM'],'lang' => $_SESSION['lang']);
 if($_SESSION['table'] == 'benutzer') {

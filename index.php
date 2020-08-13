@@ -5,15 +5,15 @@ session_start();
 require_once ('libary/class/class.DbObject.php');
 if (!($DBObj instanceof MyDbObject)) {
 	$DBObj = new MyDbObject();
-} 
+}
 if($_REQUEST['login'] OR $_REQUEST['set']) {
 	$DBObj->login($_REQUEST['pw'],$_REQUEST['benutzer'],$_REQUEST['set']);
 }
+$arrInfo = mysqli_fetch_assoc(mysqli_query($GLOBALS['DB'],"SELECT * FROM sioux7_kategorie WHERE property='startseite' AND lang='".$_SESSION['LANG']."' LIMIT 1"));
+if(!$_GET['kategorie']) {$_GET['kategorie'] = $arrInfo['titel'];}
 include "libary/include/functions.inc.php";
 include "libary/include/reg_globals.inc.php";
-//$_SESSION['DOM']=getDOM();
-$_SESSION['DOM']=2;
-if($_REQUEST['lang']) {$_SESSION['LANG']=$_REQUEST['lang'];}
+if($_REQUEST['lang']) {$_SESSION['LANG']=strtolower($_REQUEST['lang']);}
 if(!$_SESSION['LANG']) {$_SESSION['LANG'] = 'de';}
 include INC."stats.inc.php";
 require_once(SCLASS."class.Cache.php");
@@ -29,16 +29,16 @@ if (!($template instanceof Template)) {
 	$template = new Template();
 }
 
-$template->add_stylesheet('/media/css/bootstrap.min.css','screen','all');
-$template->add_stylesheet('/media/css/jquery.mmenu.all.css','screen','all');
-$template->add_stylesheet('/media/css/nav.css','screen','all');
+$template->add_stylesheet('media/css/bootstrap.min.css','screen','all');
+$template->add_stylesheet('media/css/jquery.mmenu.all.css','screen','all');
+$template->add_stylesheet('media/css/bootstrap-datepicker.min.css','screen','all');
 
 
-$template->add_footerscript('http://code.jquery.com/jquery-2.2.0.min.js','file');
-$template->add_footerscript('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js','file');
-$template->add_footerscript('/media/js/jquery.mmenu.min.all.js','file');
-$template->add_footerscript('/media/js/slick.js','file');
-$template->add_footerscript('/media/js/jquery.main.js','file');
+$template->add_footerscript('media/js/jquery-2.2.0.min.js','file');
+$template->add_footerscript('media/js//bootstrap.min.js','file');
+$template->add_footerscript('media/js/jquery.mmenu.min.all.js','file');
+$template->add_footerscript('media/js/slick.js','file');
+$template->add_footerscript('media/js/bootstrap-datepicker.min.js','file');
 
 $template->load("template/".TPL."/index.php");
 $template->emit_head();

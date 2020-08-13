@@ -15,12 +15,6 @@ $(document).ready(function(){
 		delay_after : 1000,				
 	});
 });
-// page resize
-	$(window).bind('resize', function(e)
-	{
-	  var API = $('nav#menu-left').data( "mmenu" );
-	  API.close();
-	});	
 // Menu
 $(function() {
 	$('#menu-left').mmenu({
@@ -28,7 +22,7 @@ $(function() {
 	       position  : "left"
 	    },
 	    navbar: {
-		  title: "<i class='fa fa-home' aria-hidden='true'></i> SIOUX7"
+		  title: "<i class='fa fa-home' aria-hidden='true'></i> SIOU7"
 		}
 	});
 });
