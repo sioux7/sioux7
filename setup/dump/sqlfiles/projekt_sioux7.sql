@@ -10,46 +10,11 @@ CREATE TABLE `sioux7_abonennt` (
   `aktiv` int(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_abonennt`
---
+
 
 INSERT INTO `sioux7_abonennt` (`abo_id`, `dom_id`, `lang`, `titel`, `aname`, `email`, `aktiv`) VALUES
 (0, NULL, '', '', NULL, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_admin`
---
-
-DROP TABLE IF EXISTS `sioux7_admin`;
-CREATE TABLE `sioux7_admin` (
-  `admin_id` int(10) UNSIGNED NOT NULL,
-  `dom_id` int(11) DEFAULT NULL,
-  `lang` varchar(20) DEFAULT NULL,
-  `adminname` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `login` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `passwort` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `firma` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `telefon` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
-  `email` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `rights` enum('999','777','555','333') CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Daten für Tabelle `sioux7_admin`
---
-
-INSERT INTO `sioux7_admin` (`admin_id`, `dom_id`, `lang`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES
-(0, NULL, NULL, 'neu', 'neu', '', '', '', '', '333'),
-(25180, NULL, NULL, 'Olaf Urban', 'urban', '487f13a635c78916ddc5a70bafc2f775', 'UIDEV', '089736455', 'o.urban@uidev.de', '999');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_banner`
---
 
 DROP TABLE IF EXISTS `sioux7_banner`;
 CREATE TABLE `sioux7_banner` (
@@ -66,20 +31,13 @@ CREATE TABLE `sioux7_banner` (
   `egal` int(1) DEFAULT NULL COMMENT 'ohne Ablauf'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_banner`
---
+
 
 INSERT INTO `sioux7_banner` (`banner_id`, `dom_id`, `titel`, `banner`, `link`, `aufrufe`, `klicks`, `alt`, `aktiv`, `datum`, `egal`) VALUES
 (0, NULL, 'neu', '', '', 0, 0, '', 'passiv', '2012-03-01', NULL),
 (2, 0, 'DomainFaktory', 'https://admin.df.eu/pics/banner_01.gif', 'https://df.eu/kwk/312122', 35435, 1, 'Domainfaktory', 'aktiv', '2013-08-31', 0),
 (3, 0, 'Amazon', 'https://images-na.ssl-images-amazon.com/images/G/03/associates/maitri/banner/de-books-728x90._V192564663_.gif', 'http://www.amazon.de/l/186606?_encoding=UTF8&adid=08ZFBZEEFD0K0C5FAGP3&camp=1578&creative=5726&linkCode=ur1&tag=httpuidevde-21', 35435, 0, 'Amazon Bücher', 'aktiv', '2012-03-01', 0);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_blog`
---
 
 DROP TABLE IF EXISTS `sioux7_blog`;
 CREATE TABLE `sioux7_blog` (
@@ -95,21 +53,12 @@ CREATE TABLE `sioux7_blog` (
   `datei` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_blog`
---
-
 INSERT INTO `sioux7_blog` (`blog_id`, `dom_id`, `lang`, `bereich`, `title`, `short`, `descr`, `bild`, `datum`, `datei`) VALUES
 (0, NULL, NULL, NULL, 'neu', NULL, NULL, NULL, NULL, NULL),
 (54, NULL, NULL, 'Server', 'vHost', 'Problem bei vHosts.', 'Wenn die Sessions bei vHosts nicht gespeichert werden, kann es an der Einstellung der php.ini liegen. <br />&Auml;ndern Sie ie Zeile mit session.cookie_domain = <strong>localhost =&gt; </strong>session.cookie_domain = <strong>none</strong>', NULL, '2013-11-15', NULL),
 (55, NULL, NULL, 'Datenbank', 'SQL', 'Alternative zu LIKE', 'Die Suche mit <strong>LIKE %$suche%</strong> erzielt zwar ein gutes Ergebnis, jedoch ist die Abfrage mit <strong>REGEXP "[[:&lt;:]]''.$suche.''[[:&gt;:]]"</strong> nicht nur schneller, sondern es wird exakt gesucht.<br />Dies ist sinnvoll, wenn z.b. nach 56 gesucht wird, aber nicht nach 156.', NULL, '2013-11-15', NULL),
 (57, 0, 'de', 'PHP', 'Kompression', '<strong>Zuviele Files verursachen lange Ladezeit. Es gibt sehr viele M&ouml;glichkeiten, dies zu optimieren. Zum Beispiel &uuml;ber das CDN. Jedoch kostenpflichtig. Die einfachste L&ouml;sung ist gzip.</strong>', 'PHP bietet neben vielen Eigenschaften und immer st&auml;ndig verbesserter Perfomance auch die M&ouml;glichkeit mit gzip zu arbeiten. Jedoch muss dies der Server unterst&uuml;tzen. Ob dies m&ouml;glich ist, kann man mit phpinfo(); ermitteln.<br />Wenn der Server dies unterst&uuml;tzt, k&ouml;nnen Sie gzip anwenden.<br />Einfach alles komprimieren und eine Code im header/footer einbauen, die gzip startet/beendet. Dies bewirkt, dass die Files im Cache gespeichert werden und nur einmalig geladen werden m&uuml;ssen.', NULL, '2014-09-01', NULL);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_boxes`
---
 
 DROP TABLE IF EXISTS `sioux7_boxes`;
 CREATE TABLE `sioux7_boxes` (
@@ -121,11 +70,6 @@ CREATE TABLE `sioux7_boxes` (
   `plugin` varchar(200) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='widget';
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_codesnippets`
---
 
 DROP TABLE IF EXISTS `sioux7_codesnippets`;
 CREATE TABLE `sioux7_codesnippets` (
@@ -138,9 +82,7 @@ CREATE TABLE `sioux7_codesnippets` (
   `code` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_codesnippets`
---
+
 
 INSERT INTO `sioux7_codesnippets` (`cs_id`, `dom_id`, `lang`, `bereich`, `titel`, `descr`, `code`) VALUES
 (0, NULL, NULL, NULL, 'neu', NULL, NULL),
@@ -155,11 +97,6 @@ INSERT INTO `sioux7_codesnippets` (`cs_id`, `dom_id`, `lang`, `bereich`, `titel`
 (14, 0, 'de', 'jQuery', 'Pagescroll', 'Scrollt zur ID der Page und setzt das menu aktiv', 'var bodyEl = $("body");\r\n		if(bodyEl.scrollTop() == 0){\r\n	            $(''#nav li'').first().addClass(''active'');\r\n		}\r\n		$(window).on("scroll", function() {\r\n		    var scrollTop = $(this).scrollTop();\r\n		    $("section").each(function() {\r\n		        var el = $(this),\r\n		         className = el.attr("id");	        \r\n		        if (el.offset().top-180 < scrollTop) {\r\n		        	$("#nav li").each(function(){\r\n		        		var currLink = $(this)[0].getElementsByTagName(''a'');\r\n	        			var refElement = $(currLink).attr("title");\r\n	        			if(refElement==className){\r\n		        		    	$(this).siblings().removeClass(''active'');\r\n		        		        $(this).addClass(''active'');\r\n	        			}\r\n		        	});\r\n		            bodyEl.addClass(className);          \r\n		        } else {\r\n		            bodyEl.removeClass(className);\r\n		        }\r\n		    })\r\n		});'),
 (15, 0, 'de', 'jQuery', 'Random', 'Ordnet die ul/li Elemente nach Zufall neu an. Zu beachten ist, das ul id=myParent hat und alle li class=item haben. Funktioniert auch mit div', 'var max = $(''#myParent li.item'').length;\r\n    $(''#myParent'').children(''li.item'').sort(function(){\r\n      return Math.random()*max > (max/2) ? 1 : -1;\r\n    }).each(function(){\r\n        $(this).appendTo($(this).parent());\r\n    });');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_content`
---
 
 DROP TABLE IF EXISTS `sioux7_content`;
 CREATE TABLE `sioux7_content` (
@@ -175,9 +112,6 @@ CREATE TABLE `sioux7_content` (
   `info` text COMMENT 'für InfoBox'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_content`
---
 
 INSERT INTO `sioux7_content` (`con_id`, `level`, `ismod`, `inhalt`, `layout`, `plugin`, `bild`, `pos`, `datei`, `info`) VALUES
 (0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -233,11 +167,6 @@ INSERT INTO `sioux7_content` (`con_id`, `level`, `ismod`, `inhalt`, `layout`, `p
 (57, 44, 0, '<div id="gt-src-tools">&nbsp;</div>\r\n<div id="gt-res-content" class="almost_half_cell">\r\n<div style="zoom: 1;" dir="ltr"><span id="result_box" lang="fr"><span class="hps">Pour</span> <span class="hps">tirer sa r&eacute;v&eacute;rence</span> <span class="hps">d''un</span> <span class="hps">champagne</span> <span class="hps">&agrave; la</span> <span class="hps">fran&ccedil;aise</span><span>.</span> <span class="hps">Ce sont</span> <span class="hps">des jours merveilleux</span> <span class="hps">&agrave; Paris</span><span>.</span> <span class="hps">Rien n''est plus beau</span> <span class="hps">que quand</span> <span class="hps">vous avez des amis</span> <span class="hps">partout dans le monde</span><span>.</span> <span class="hps">Qui a dit que</span> <span class="hps">c''est la langue</span> <span class="hps">des signes</span> <span class="hps">mal</span><span>,</span> <span class="hps">sont</span> <span class="hps">tout &agrave; fait tort</span><span>.</span> <span class="hps">Un grand merci</span> <span class="hps">&agrave; mon ami</span> <span class="hps atn">(</span><span>architecte</span><span>)</span><span>,</span> <span class="hps">dont il</span> <span class="hps">a fait don de</span> <span class="hps">plus.</span></span></div>\r\n</div>', 'normal', '', '25180_abschied.jpg', 'right', NULL, ''),
 (58, 45, 0, '', 'normal', 'developing', NULL, 'right', NULL, '');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_developing`
---
 
 DROP TABLE IF EXISTS `sioux7_developing`;
 CREATE TABLE `sioux7_developing` (
@@ -250,9 +179,7 @@ CREATE TABLE `sioux7_developing` (
   `bug` text CHARACTER SET latin1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_developing`
---
+
 
 INSERT INTO `sioux7_developing` (`dev_id`, `dom_id`, `lang`, `titel`, `descr`, `isfertig`, `bug`) VALUES
 (0, NULL, NULL, NULL, NULL, 0, NULL),
@@ -271,11 +198,6 @@ INSERT INTO `sioux7_developing` (`dev_id`, `dom_id`, `lang`, `titel`, `descr`, `
 (44, 0, 'de', 'paion.de', 'Typo3 Fluid/DCE/Plugin', 1, ''),
 (45, 0, 'de', 'Motorrad Wimmer und Merkel', 'Typo3 Fluid / DCE', 1, '');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_domain`
---
 
 DROP TABLE IF EXISTS `sioux7_domain`;
 CREATE TABLE `sioux7_domain` (
@@ -284,19 +206,13 @@ CREATE TABLE `sioux7_domain` (
   `domdescr` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_domain`
---
+
 
 INSERT INTO `sioux7_domain` (`dom_id`, `Domainname`, `domdescr`) VALUES
 (0, 'neu', NULL),
 (2, 'sioux7.local', 'TestZone auf Mac');
 
--- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `sioux7_firma`
---
 
 DROP TABLE IF EXISTS `sioux7_firma`;
 CREATE TABLE `sioux7_firma` (
@@ -318,18 +234,12 @@ CREATE TABLE `sioux7_firma` (
   `hrb` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `sioux7_firma`
---
+
 
 INSERT INTO `sioux7_firma` (`firma_id`, `dom_id`, `firma`, `ansprechpartner`, `adresse`, `plz`, `ort`, `land`, `telefon`, `telefax`, `email`, `descr`, `logo`, `agb`, `ustid`, `hrb`) VALUES
 (1, NULL, 'UIDEV', 'O. Urban (privater Entwickler)', 'Naupliastr. 91', 81545, 'MÃ¼nchen', 'BRD', '', '', 'urban.uidev@uidev.de', '<p><strong>allgemeiner Hinweis<br /></strong>UIDEV ist KEINE Firma! UIDEV steht f&uuml;r die Bezeichnung Urban Internet Developing und ist privat. <strong><br /><br /><br />Rechtlicher Hinweis<br /></strong><br /> Wir sind bem&uuml;ht, auf unserer Website zutreffende Informationen, Daten und Dateien zur Verf&uuml;gung zu stellen.<br /> <br /> Wir behalten uns vor, ohne vorherige Ank&uuml;ndigung, &Auml;nderungen oder Erg&auml;nzungen der bereitgestellten Informationen, Daten oder Dateien jederzeit vorzunehmen.<br /> <br /> Der Inhalt dieser Website, insbesondere alle Texte, Bilder, Graphiken, Logos, Dateien, Webcam-Bilder, Ton-, Video- und Animationsdateien sowie auch ihre Arrangements, unterliegen dem Urheberrecht und anderen Gesetzen zum Schutz geistigen Eigentums. Die Verwendung, Speicherung sowie Vervielf&auml;ltigung der auf dieser Website verwendeten Logos, Dateien, Webcam-Bilder, Ton-, Video- und Animationsdateien und deren Arrangements bedarf dagegen der vorherigen Zustimmung durch uns.<br /> <br /> Die auf unserer Website bereitgestellten Texte, Dateien, Bilder, Graphiken, Logos etc. d&uuml;rfen weder ver&auml;ndert, noch f&uuml;r Handelszwecke kopiert und auf anderen Websites verwendet werden. Wir gew&auml;hren auch keinerlei Lizenzrechte an dem geistigen Eigentum dieser Website.<br /> <br /> Die auf unserer Website genannten Marken und Logos sind teilweise gesetzlich gesch&auml;tzte Warenzeichen, hier gilt das jeweilige Inhaberrecht.<br /> <br /> S&auml;mtliche Informationen, Daten oder Dateien, ihre Nutzung sowie s&auml;mtliches mit unserer Website zusammenh&auml;ngendes Tun, Dulden oder Unterlassen unterliegen ausschliesslich deutschem Recht.<br /><strong><br /></strong>Mit Urteil vom 12. Mai 1998 - 312 O 85/98 - Haftung f&uuml;r Links: Hiermit distanzieren wir uns ausdr&uuml;cklich vom Inhalt der verlinkten Seiten auf allen unseren Seiten und weisen darauf hin, dass wir keinerlei Haftung &uuml;bernehmen. Auf Wunsch des verlinkten Domaininhabers entfernen wir den Link mit sofortiger Wirkung aus unseren Seiten.</p>\r\n<br /> Erf&uuml;llungsort und ausschliesslicher Gerichtsstand ist M&uuml;nchen.<br /> Stand: August 2014', 'logo.png', 'Allgemeine Gesch&auml;ftsbedingungen:<br /> Hier kann Ihre AGB stehen', '', '');
 
--- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `sioux7_grouprights`
---
 
 DROP TABLE IF EXISTS `sioux7_grouprights`;
 CREATE TABLE `sioux7_grouprights` (
@@ -342,18 +252,12 @@ CREATE TABLE `sioux7_grouprights` (
   `table_nav` enum('myselect','table','sioux7_tables','siuox7_tables','titel','multi') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_grouprights`
---
+
 
 INSERT INTO `sioux7_grouprights` (`gr_id`, `dom_id`, `lang`, `gradmin`, `group_nav`, `tables`, `table_nav`) VALUES
 (0, NULL, NULL, NULL, '', NULL, '');
 
--- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `sioux7_kategorie`
---
 
 DROP TABLE IF EXISTS `sioux7_kategorie`;
 CREATE TABLE `sioux7_kategorie` (
@@ -374,9 +278,7 @@ CREATE TABLE `sioux7_kategorie` (
   `content` enum('ext','sioux7_content','con_id') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_kategorie`
---
+
 
 INSERT INTO `sioux7_kategorie` (`kategorie_id`, `aktiv`, `titel`, `parent`, `parent_nav`, `dom_id`, `lang`, `menu`, `rang`, `intern`, `cache`, `keywords`, `description`, `beschreibung`, `content`) VALUES
 (0, 0, 'neu', '0', NULL, 2, 'de', 'menu', NULL, 0, 0, NULL, NULL, NULL, NULL),
@@ -411,11 +313,6 @@ INSERT INTO `sioux7_kategorie` (`kategorie_id`, `aktiv`, `titel`, `parent`, `par
 (42, 1, 'Responsive Layout', '22', NULL, 0, 'de', 'menu', 0, 0, 0, 'Responsive, Layout, HTML, CSS', 'Das reposnsive Layout von SIOUX7', 'Das reposnsive Layout von SIOUX7', NULL),
 (43, 1, 'Lexikon', '20', NULL, 0, 'de', 'menu', 100, 0, 0, 'Lexikon, Erkl&auml;rung, Begriffe', 'Kleines Lexikon zum nachschlagen', 'Kleines Lexikon zum nachschlagen', NULL);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_konfiguration`
---
 
 DROP TABLE IF EXISTS `sioux7_konfiguration`;
 CREATE TABLE `sioux7_konfiguration` (
@@ -425,9 +322,7 @@ CREATE TABLE `sioux7_konfiguration` (
   `wert` varchar(250) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_konfiguration`
---
+
 
 INSERT INTO `sioux7_konfiguration` (`cof_id`, `dom_id`, `schluessel`, `wert`) VALUES
 (0, NULL, 'neu', NULL),
@@ -443,11 +338,7 @@ INSERT INTO `sioux7_konfiguration` (`cof_id`, `dom_id`, `schluessel`, `wert`) VA
 (15, NULL, 'START', 'home'),
 (16, 0, 'WG', 'libary/widgets/');
 
--- --------------------------------------------------------
 
---
--- Tabellenstruktur für Tabelle `sioux7_language`
---
 
 DROP TABLE IF EXISTS `sioux7_language`;
 CREATE TABLE `sioux7_language` (
@@ -459,9 +350,6 @@ CREATE TABLE `sioux7_language` (
   `activ` enum('activ','passiv') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_language`
---
 
 INSERT INTO `sioux7_language` (`lang_id`, `dom_id`, `titel`, `bild`, `vat`, `activ`) VALUES
 (0, NULL, 'neu', '', '', 'passiv'),
@@ -469,11 +357,6 @@ INSERT INTO `sioux7_language` (`lang_id`, `dom_id`, `titel`, `bild`, `vat`, `act
 (7, NULL, 'Russisch', 'russia.gif', 'ru', 'passiv'),
 (8, NULL, 'Englisch', 'uk.gif', 'en', 'passiv');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sioux7_lexika`
---
 
 DROP TABLE IF EXISTS `sioux7_lexika`;
 CREATE TABLE `sioux7_lexika` (
@@ -485,9 +368,7 @@ CREATE TABLE `sioux7_lexika` (
   `bereich` enum('PHP','Glosar') DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Daten für Tabelle `sioux7_lexika`
---
+
 
 INSERT INTO `sioux7_lexika` (`lex_id`, `bild`, `befehl`, `aufbau`, `text`, `bereich`) VALUES
 (416, '', 'Hacker', '', 'Die "sportlichen" Hacker geben sich nach ihren Aktionen zumeist zu erkennen, indem sie etwa auf gehackten Internetseiten Gr&uuml;&szlig;e hinterlassen oder in der Szene &uuml;ber ihre Taten berichten. Auch der legend&auml;re Chaos Computer Club (CCC), Hamburg, oder die Bayerische Hackerpost, M&uuml;nchen, betreiben "social hacking" - und tun dieses, um M&auml;ngel beim Datenschutz von Firmen und Beh&ouml;rden aufzuzeigen  (manchmal sogar auch im Auftrag der attakierten Firmen). Das Vorurteil, Hacker seien pickelige J&uuml;nglinge, die sich st&auml;ndig mit Cola und Kartoffelchips vollstopfen, stimmt also nicht (mehr). Viele sind inzwischen recht erfolgreich als Berater ins professionelle EDV-Gesch&auml;ft eingestiegen.', 'Glosar'),
