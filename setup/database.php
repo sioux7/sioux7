@@ -109,13 +109,11 @@ print("</table></form></center>");
 fclose($basisdatei);
 
 if($_REQUEST['op']=="create"){
-	require('../include/globals.inc.php');	// Datenbank-Settings
-	$db = mysql_connect($server, $user, $passwort)	or die (mysql_error());
-	mysql_select_db($datenbank, $db) or die(mysql_error());
-	mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO'");
-	mysql_query("SET NAMES 'utf8'");
+	require('../sioux7conf/globals.inc.php');	// Datenbank-Settings
+	@mysqli_connect($server, $user, $passwort, $datenbank);
+	mysqli_set_charset($db_verbindung, "utf8");
 	// first ADMIN
-	$sql_create1 = "CREATE TABLE IF NOT EXISTS `admin` (
+	$sql_create1 = "CREATE TABLE IF NOT EXISTS `sioux7_admin` (
 	  `admin_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	  `adminname` varchar(20) NOT NULL,
 	  `login` varchar(30) NOT NULL,
@@ -126,14 +124,18 @@ if($_REQUEST['op']=="create"){
 	  `rights` enum('999','777','555','333') NOT NULL,
 	  PRIMARY KEY (`admin_id`)
 	) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25181 ;";
-	$result = mysql_query($sql_create1);
+	
+	@mysqli_query($GLOBALS['DB'],$sql_create1));
 	
 	// set the Sadmin
 	$sql_insert1="INSERT INTO `sioux7_admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (0, 'neu', 'neu', '', '', '', '', '333')";
-	$result = mysql_query($sql_insert1);
+	
+	@mysqli_query($GLOBALS['DB'],$sql_insert1));
 	$mypasswort =md5($mypasswort);
-	$sql_insert2="INSERT INTO `admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (25180, '$adminname', '$login', '$mypasswort', '$firma', '$telefon', '$email', '999')";
-	$result = mysql_query($sql_insert2) or die(mysql_error());
+	$sql_insert2="INSERT INTO `sioux7_admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (25180, '$adminname', '$login', '$mypasswort', '$firma', '$telefon', '$email', '999')";
+	
+	@mysqli_query($GLOBALS['DB'],$sql_insert2));
+	$sql_insert1)
 	print ("<table><tr><td>Urbans Installer - Die Datenbank wurde erfolgreich angelegt. Es wird nun die Grundstruktur angelegt.<br><a href='dump/install.php?globals=done&datei=cms'>Final Step</a></td></tr><table>");
 }
 //chmod('../sioux7conf/globals.inc.php',0644);
