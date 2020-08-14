@@ -129,7 +129,7 @@ if($_REQUEST['op']=="create"){
 	$result = mysql_query($sql_create1);
 	
 	// set the Sadmin
-	$sql_insert1="INSERT INTO `admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (0, 'neu', 'neu', '', '', '', '', '333')";
+	$sql_insert1="INSERT INTO `sioux7_admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (0, 'neu', 'neu', '', '', '', '', '333')";
 	$result = mysql_query($sql_insert1);
 	$mypasswort =md5($mypasswort);
 	$sql_insert2="INSERT INTO `admin` (`admin_id`, `adminname`, `login`, `passwort`, `firma`, `telefon`, `email`, `rights`) VALUES (25180, '$adminname', '$login', '$mypasswort', '$firma', '$telefon', '$email', '999')";

@@ -5,15 +5,12 @@
 </head>
 <body>
 <?
-include "../../include/reg_globals.inc.php";
-include '../../include/globals.inc.php';
-mysql_connect($server, $user, $passwort) or die
+include '../../sioux7conf/globals.inc.php';
+@mysqli_connect($server, $user, $passwort, $datenbank); or die
 	("<h3>Vor der Installation der Datenbanken muss MySQL betriebsbereit sein und Sie müssen Zugriff auf die Datenbank haben.</h3>");
-mysql_query("SET NAMES 'utf8'");
+	@mysqli_set_charset($db_verbindung, "utf8");
 	$path = "./sqlfiles/";
-	mysql_select_db($datenbank);
-	mysql_query("SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO'");
-	$file_to_parse = $path.$datei.".sql";
+	$file_to_parse = "projekt_sioux7.sql";
 		if (!file_exists($file_to_parse))
 		{
 			echo "<h3>Konnte Datei '$file_to_parse' nicht finden. Prüfen Sie bitte, ob die Dateien im richtigen Verzeichnis liegen.<h3>";
@@ -33,24 +30,22 @@ mysql_query("SET NAMES 'utf8'");
 		
 		foreach($drop_statements[1] as $query)
 		{
-			@mysql_query($query) or die($query);
+			@mysqli_query($GLOBALS['DB'],$query);
 		} 
 		
 		foreach($create_statements[1] as $query)
 		{
-			@mysql_query($query) or die($query);
+			@mysqli_query($GLOBALS['DB'],$query);
 		} 
 
 		foreach($insert_statements[1] as $query)
 		{
-			@mysql_query($query) or die($query);
+			@mysqli_query($GLOBALS['DB'],$query);
 		} 
 		
 		print ("<center><table><tr><td>Urbans Installer - Die Grundstruktur wurde erfolgreich angelegt. Entfernen Sie bitte das Verzeichnis /setup.<br>Starten Sie nun die Verwaltung.<br><a href='../../verwaltung/index.php'>Die Verwaltung</a></td></tr></table></center>");
 
-$datei=$datei.".sql";
-unlink("sqlfiles/".$datei);	
-mysql_close();
+unlink("sqlfiles/projekt_sioux7.sql;	
 ?>
 </body>
 </html>
