@@ -332,9 +332,9 @@ INSERT INTO `sioux7_konfiguration` (`cof_id`, `dom_id`, `schluessel`, `wert`) VA
 (9, NULL, 'IMG', 'media/images/'),
 (10, NULL, 'SCLASS', 'libary/class/'),
 (11, NULL, 'BASE', '/sioux7'),
-(12, 0, 'EMAIL', 'urban.uidev@uidev.de'),
-(13, NULL, 'MAILHOST', 'smtprelaypool.ispgateway.de'),
-(14, 0, 'MAILPW', 'UID7529zx!110'),
+(12, 0, 'EMAIL', ''),
+(13, NULL, 'MAILHOST', ''),
+(14, 0, 'MAILPW', ''),
 (15, NULL, 'START', 'home'),
 (16, 0, 'WG', 'libary/widgets/');
 
