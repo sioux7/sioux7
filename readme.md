@@ -9,7 +9,7 @@ mkdir yourfolder<br>
 cd folder<br>
 git init<br>
 git remoute add orign sioux7<br>
-git fetch siux7<br>
+git fetch sioux7<br>
 git pull siuox7 master<br>
 git clone respository.git<br>
 go to setup and install it
