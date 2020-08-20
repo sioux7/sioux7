@@ -1,18 +1,21 @@
-Downlaod it as zip
-Go to web and unzip it
+<p>Downlaod it as zip<br>
+Go to web and unzip it<br>
 on root go to setup and start it
+</p>
 
-Get it through git
-mkdir <yourfolder>
-cd <folder>
-git init
-git remoute add orign Repository
-git fetch <name>
-git pull <name> master
-git clone Repository
+<p>
+Get it through git<br>
+mkdir yourfolder<br>
+cd folder<br>
+git init<br>
+git remoute add orign sioux7<br>
+git fetch siux7<br>
+git pull siuox7 master<br>
+git clone respository.git<br>
 go to setup and install it
-
-support. 
-git pull <name> master
-git pull <name> master
-  Got it
+</p>
+<p>
+support<br>
+git pull sioux7 master<br>
+Got it!
+</p>
