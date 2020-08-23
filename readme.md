@@ -19,3 +19,4 @@ support<br>
 git pull sioux7 master<br>
 Got it!
 </p>
+<p>SIOUX7 is free Software and can used how you like!<br>Please notice: No any waranty!</p>
